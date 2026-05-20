@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏆 הזמנת חולצות מונדיאל 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-deep: #0a0a23;
+  --bg-mid: #0f1b3d;
+  --bg-card: #16213e;
+  --border: #2a2a5a;
+  --accent: #e94560;
+  --accent-light: #ff6b6b;
+  --green: #2ecc71;
+  --green-dark: #1a7a3a;
+  --text: #eee;
+  --text-dim: #8899aa;
+  --text-dimmer: #556;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  min-height: 100vh;
+  background: linear-gradient(145deg, var(--bg-deep) 0%, var(--bg-mid) 40%, #0a1628 100%);
+  font-family: 'Heebo', 'Segoe UI', Tahoma, sans-serif;
+  color: var(--text);
+  direction: rtl;
+}
+@keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+@keyframes spin { to { transform:rotate(360deg); } }
+@keyframes shimmer { 0% { background-position:-200% 0; } 100% { background-position:200% 0; } }
+::-webkit-scrollbar { width:6px; }
+::-webkit-scrollbar-track { background:var(--bg-deep); }
+::-webkit-scrollbar-thumb { background:var(--accent); border-radius:3px; }
+
+.header {
+  background: linear-gradient(135deg, #0f3460, #16213e 50%, #1a1a3e);
+  padding: 30px 20px 24px;
+  text-align: center;
+  border-bottom: 2px solid var(--accent);
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 120%, rgba(233,69,96,0.15), transparent 60%);
+}
+.header-content { position: relative; z-index: 1; }
+.header h1 {
+  font-size: 28px;
+  font-weight: 900;
+  margin: 0 0 6px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-light), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.header p { font-size: 13px; color: #8899bb; }
+
+.container { max-width: 720px; margin: 0 auto; padding: 0 16px 40px; }
+
+.stats-bar { display:flex; justify-content:center; gap:20px; margin-bottom:20px; flex-wrap:wrap; }
+.stat-box {
+  background: var(--bg-card);
+  border-radius: 10px;
+  padding: 10px 18px;
+  border: 1px solid var(--border);
+  text-align: center;
+  min-width: 70px;
+}
+.stat-icon { font-size: 20px; }
+.stat-value { font-size: 22px; font-weight: 900; color: var(--accent); }
+.stat-label { font-size: 10px; color: var(--text-dim); }
+
+.order-card {
+  background: linear-gradient(135deg, var(--bg-card), #1a1a3e);
+  border-radius: 14px;
+  padding: 18px 16px;
+  margin-bottom: 14px;
+  border: 1px solid var(--border);
+  animation: fadeIn 0.3s ease-out;
+}
+.order-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; }
+.order-num { font-size:14px; font-weight:700; color:var(--accent); }
+.btn-remove {
+  background: rgba(233,69,96,0.15);
+  border: 1px solid rgba(233,69,96,0.3);
+  border-radius: 6px;
+  color: var(--accent);
+  cursor: pointer;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: 'Heebo', sans-serif;
+}
+.fields-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(150px, 1fr)); gap:12px; }
+.field-label { font-size:11px; color:var(--text-dim); margin-bottom:4px; display:block; font-weight:600; }
+.field-input {
+  width: 100%;
+  background: var(--bg-mid);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: var(--text);
+  font-size: 13px;
+  font-family: 'Heebo', sans-serif;
+  transition: border-color 0.2s;
+  direction: rtl;
+}
+.field-input:focus { outline:none; border-color:var(--accent); }
+.field-input::placeholder { color: #556; }
+
+/* Dropdown */
+.dropdown { position:relative; }
+.dropdown-trigger {
+  width:100%;
+  background: var(--bg-mid);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: var(--text);
+  font-size: 13px;
+  font-family: 'Heebo', sans-serif;
+  cursor: pointer;
+  text-align: right;
+  min-height: 38px;
+  transition: border-color 0.2s;
+}
+.dropdown-trigger.placeholder { color: #556; }
+.dropdown-trigger.disabled { background:#0d1a30; cursor:not-allowed; }
+.dropdown-trigger.open { border-color: var(--accent); }
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0; right: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--accent);
+  border-radius: 0 0 8px 8px;
+  z-index: 999;
+  max-height: 200px;
+  overflow: auto;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  display: none;
+}
+.dropdown-menu.visible { display:block; }
+.dropdown-search {
+  width:100%;
+  background: var(--bg-mid);
+  border:none;
+  border-bottom:1px solid var(--border);
+  padding:8px 12px;
+  color:var(--text);
+  font-size:13px;
+  direction:rtl;
+  font-family:'Heebo',sans-serif;
+}
+.dropdown-search:focus { outline:none; }
+.dropdown-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #ccc;
+  transition: background 0.15s;
+}
+.dropdown-item:hover { background: #1a2a5a; }
+.dropdown-item.selected { background: var(--accent); color: #fff; }
+
+/* Buttons */
+.btn-row { display:flex; gap:12px; justify-content:center; margin-top:20px; flex-wrap:wrap; }
+.btn {
+  border:none; border-radius:10px; padding:12px 28px;
+  font-size:15px; font-weight:700; cursor:pointer;
+  font-family:'Heebo',sans-serif;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn:hover { transform:translateY(-2px); }
+.btn-add {
+  background: linear-gradient(135deg, var(--accent), #c0392b);
+  color:#fff;
+  box-shadow: 0 4px 20px rgba(233,69,96,0.3);
+}
+.btn-send {
+  background: linear-gradient(135deg, var(--green-dark), var(--green));
+  color:#fff;
+  font-size:16px; font-weight:900; padding:12px 32px;
+  box-shadow: 0 4px 24px rgba(46,204,113,0.35);
+  letter-spacing:1px;
+}
+.btn-send:disabled { background:linear-gradient(135deg,#555,#444); cursor:wait; }
+.btn-summary {
+  background: linear-gradient(135deg, #0f3460, #16213e);
+  color:#eee; border:1px solid var(--border);
+}
+.btn-copy {
+  background: linear-gradient(135deg, #2c3e50, #34495e);
+  color:#eee;
+}
+
+/* Status banner */
+.status-banner {
+  margin:16px 0; padding:14px 20px; border-radius:12px;
+  text-align:center; font-weight:600; font-size:14px;
+  animation: fadeIn 0.3s ease-out;
+}
+.status-sending {
+  background: linear-gradient(90deg,#1a3a6a,#0f3460,#1a3a6a);
+  background-size:200% 100%;
+  animation: shimmer 1.5s infinite;
+  border:1px solid #3a6a9a; color:#fff;
+}
+.status-success { background:linear-gradient(135deg,#0d4a2a,#1a7a3a); border:1px solid var(--green); color:#fff; }
+.status-error { background:linear-gradient(135deg,#4a0d0d,#7a1a1a); border:1px solid var(--accent); color:#fff; }
+.spinner {
+  display:inline-block; width:16px; height:16px;
+  border:2px solid #fff; border-top-color:transparent;
+  border-radius:50%; animation:spin 0.8s linear infinite;
+  margin-left:8px; vertical-align:middle;
+}
+
+.sheet-link { text-align:center; margin-top:14px; }
+.sheet-link a { color:#4a9eff; font-size:12px; text-decoration:none; opacity:0.8; }
+.sheet-link a:hover { opacity:1; }
+
+/* Summary table */
+.summary-box {
+  margin-top:24px; background:var(--bg-card); border-radius:14px;
+  border:1px solid var(--border); overflow:auto; animation:fadeIn 0.3s ease-out;
+}
+.summary-title {
+  padding:14px 18px; border-bottom:1px solid var(--border);
+  font-size:16px; font-weight:700; color:var(--accent);
+}
+.summary-table { width:100%; border-collapse:collapse; font-size:12px; }
+.summary-table th {
+  padding:10px 8px; background:#0f3460; color:#8899bb;
+  font-weight:600; border-bottom:1px solid var(--border);
+  white-space:nowrap; text-align:right;
+}
+.summary-table td { padding:8px; border-bottom:1px solid #1a1a3e; }
+
+.footer-note {
+  text-align:center; margin-top:28px; color:var(--text-dimmer);
+  font-size:11px; line-height:1.7;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-content">
+    <div style="font-size:42px;margin-bottom:4px">⚽🏆</div>
+    <h1>הזמנת חולצות מונדיאל 2026</h1>
+    <p>🇺🇸 🇲🇽 🇨🇦 &nbsp; 48 נבחרות · סגל שחקנים מעודכן · שליחה ישירה לטבלה</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="stats-bar" id="statsBar"></div>
+  <div id="ordersContainer"></div>
+  <div id="statusBanner"></div>
+  <div class="btn-row" id="btnRow"></div>
+  <div class="sheet-link">
+    <a href="https://docs.google.com/spreadsheets/d/19lPn6u9w_My3i7LHa9qrEXPlrhKl1ex4NkcPNKA_Dc0/edit" target="_blank">📊 פתח את הטבלה בגוגל שיטס ←</a>
+  </div>
+  <div id="summaryBox"></div>
+  <div class="footer-note">
+    ⚠️ סגלי חלק מהנבחרות עדיין לא אושרו סופית ע״י FIFA (דדליין: 2 ביוני 2026)<br>
+    המידע מבוסס על סגלים ראשוניים/סופיים שפורסמו עד מאי 2026<br>
+    ניתן גם לכתוב שם חופשי על הגב בכל שפה
+  </div>
+</div>
+
+<script>
+// Teams data
+const TEAMS_DATA = {
+  // GROUP A
+  "🇲🇽 Mexico": {
+    players: [
+      {name:"Guillermo Ochoa",no:13},{name:"Luis Malagón",no:1},{name:"Carlos Acevedo",no:23},
+      {name:"Jorge Sánchez",no:2},{name:"César Montes",no:3},{name:"Edson Álvarez",no:4},{name:"Johan Vásquez",no:5},
+      {name:"Jesús Gallardo",no:6},{name:"Gerardo Arteaga",no:22},{name:"Kevin Álvarez",no:19},
+      {name:"Érick Gutiérrez",no:15},{name:"Luis Romo",no:8},{name:"Carlos Rodríguez",no:16},
+      {name:"Orbelin Pineda",no:10},{name:"Diego Lainez",no:18},{name:"Roberto Alvarado",no:17},
+      {name:"Hirving Lozano",no:7},{name:"Raúl Jiménez",no:9},{name:"Santiago Giménez",no:11},
+      {name:"Julián Quiñones",no:14},{name:"Alexis Vega",no:20},{name:"Henry Martín",no:21},
+      {name:"Uriel Antuna",no:12},{name:"César Huerta",no:24},{name:"Guillermo Martínez",no:25}
+    ]
+  },
+  "🇰🇷 South Korea": {
+    players: [
+      {name:"Kim Seung-gyu",no:1},{name:"Jo Hyeon-woo",no:23},{name:"Song Bum-keun",no:21},
+      {name:"Kim Min-jae",no:3},{name:"Kim Moon-hwan",no:2},{name:"Sel Young-woo",no:5},{name:"Cho Yu-min",no:4},
+      {name:"Lee Tae-seok",no:13},{name:"Park Jin-seob",no:15},{name:"Kim Tae-hyeon",no:6},
+      {name:"Lee Han-beom",no:14},{name:"Jens Castrop",no:22},{name:"Lee Ki-hyuk",no:12},
+      {name:"Lee Jae-sung",no:7},{name:"Hwang Hee-chan",no:11},{name:"Hwang In-beom",no:8},
+      {name:"Lee Kang-in",no:10},{name:"Paik Seung-ho",no:16},{name:"Kim Jun-gyu",no:17},
+      {name:"Lee Dong-gyeong",no:18},{name:"Bae Jun-ho",no:19},{name:"Eom Ji-sung",no:20},
+      {name:"Yang Hyun-jun",no:24},{name:"Son Heung-min",no:9},{name:"Oh Hyeon-gyu",no:25}
+    ]
+  },
+  "🇿🇦 South Africa": {
+    players: [
+      {name:"Ronwen Williams",no:1},{name:"Veli Mothwa",no:16},{name:"Bruce Bvuma",no:23},
+      {name:"Mothobi Mvala",no:5},{name:"Grant Kekana",no:4},{name:"Siyanda Xulu",no:3},
+      {name:"Khuliso Mudau",no:2},{name:"Aubrey Modiba",no:12},{name:"Terrence Mashego",no:6},
+      {name:"Thabang Monare",no:8},{name:"Bathusi Aubaas",no:13},{name:"Teboho Mokoena",no:10},
+      {name:"Themba Zwane",no:7},{name:"Percy Tau",no:11},{name:"Lyle Foster",no:9},
+      {name:"Evidence Makgopa",no:17},{name:"Iqraam Rayners",no:14},{name:"Elias Mokwana",no:19},
+      {name:"Relebohile Mofokeng",no:18},{name:"Thapelo Morena",no:22},{name:"Bongokuhle Hlongwane",no:20},
+      {name:"Sipho Mbule",no:15},{name:"Ethan Brooks",no:21},{name:"Luke Le Roux",no:24}
+    ]
+  },
+  "🇨🇿 Czechia": {
+    players: [
+      {name:"Jindřich Staněk",no:1},{name:"Matěj Kovář",no:23},{name:"Vítězslav Jaroš",no:16},
+      {name:"Vladimír Coufal",no:2},{name:"Robin Hranáč",no:3},{name:"Ladislav Krejčí",no:4},
+      {name:"Tomáš Vlček",no:5},{name:"David Zima",no:6},{name:"Martin Vitík",no:13},
+      {name:"Tomáš Souček",no:8},{name:"Lukáš Provod",no:10},{name:"Michal Sadílek",no:7},
+      {name:"Alex Král",no:15},{name:"Ondřej Lingr",no:14},{name:"Adam Hložek",no:11},
+      {name:"Patrik Schick",no:9},{name:"Mojmír Chytil",no:17},{name:"Tomáš Čvančara",no:19},
+      {name:"Václav Černý",no:18},{name:"Jan Kuchta",no:20},{name:"Pavel Šulc",no:12},
+      {name:"Tomáš Chorý",no:21},{name:"David Jurásek",no:22},{name:"Matěj Jurásek",no:24}
+    ]
+  },
+  // GROUP B
+  "🇨🇦 Canada": {
+    players: [
+      {name:"Milan Borjan",no:18},{name:"Maxime Crépeau",no:16},{name:"Dayne St. Clair",no:1},
+      {name:"Alphonso Davies",no:19},{name:"Alistair Johnston",no:2},{name:"Moise Bombito",no:5},
+      {name:"Derek Cornelius",no:4},{name:"Kamal Miller",no:3},{name:"Sam Adekugbe",no:12},
+      {name:"Richie Laryea",no:22},{name:"Ismael Koné",no:8},{name:"Stephen Eustáquio",no:7},
+      {name:"Samuel Piette",no:6},{name:"Mark-Anthony Kaye",no:14},{name:"Ali Ahmed",no:15},
+      {name:"Jonathan David",no:9},{name:"Cyle Larin",no:17},{name:"Tajon Buchanan",no:11},
+      {name:"Jonathan Osorio",no:21},{name:"Junior Hoilett",no:10},{name:"Liam Millar",no:20},
+      {name:"Tani Oluwaseyi",no:23},{name:"Jacen Russell-Rowe",no:24},{name:"Jacob Shaffelburg",no:13}
+    ]
+  },
+  "🇨🇭 Switzerland": {
+    players: [
+      {name:"Yann Sommer",no:1},{name:"Gregor Kobel",no:21},{name:"Yvon Mvogo",no:12},
+      {name:"Manuel Akanji",no:5},{name:"Nico Elvedi",no:4},{name:"Ricardo Rodríguez",no:13},
+      {name:"Silvan Widmer",no:2},{name:"Leonidas Stergiou",no:3},{name:"Ulisses Garcia",no:6},
+      {name:"Granit Xhaka",no:10},{name:"Denis Zakaria",no:8},{name:"Remo Freuler",no:15},
+      {name:"Djibril Sow",no:7},{name:"Vincent Sierro",no:14},{name:"Ardon Jashari",no:16},
+      {name:"Xherdan Shaqiri",no:23},{name:"Breel Embolo",no:9},{name:"Noah Okafor",no:17},
+      {name:"Ruben Vargas",no:11},{name:"Dan Ndoye",no:18},{name:"Zeki Amdouni",no:19},
+      {name:"Fabian Rieder",no:20},{name:"Filip Ugrinic",no:22},{name:"Andi Zeqiri",no:24}
+    ]
+  },
+  "🇶🇦 Qatar": {
+    players: [
+      {name:"Saad Al-Sheeb",no:1},{name:"Meshaal Barsham",no:21},{name:"Mahmoud Abunada",no:22},
+      {name:"Pedro Miguel",no:2},{name:"Abdelkarim Hassan",no:3},{name:"Bassam Al-Rawi",no:5},
+      {name:"Musab Kheder",no:15},{name:"Homam Ahmed",no:14},{name:"Tarek Salman",no:6},
+      {name:"Karim Boudiaf",no:8},{name:"Assim Madibo",no:12},{name:"Hassan Al-Haydos",no:10},
+      {name:"Abdulaziz Hatem",no:7},{name:"Jassem Gaber",no:16},{name:"Mohammed Waad",no:13},
+      {name:"Almoez Ali",no:9},{name:"Akram Afif",no:11},{name:"Ahmed Alaaeldin",no:17},
+      {name:"Mohammed Muntari",no:19},{name:"Yusuf Abdurisag",no:20},{name:"Ali Asad",no:23},
+      {name:"Ismaeel Mohammad",no:4},{name:"Mubarak Alrashidi",no:18},{name:"Hashim Ali",no:24}
+    ]
+  },
+  "🇧🇦 Bosnia & Herzegovina": {
+    players: [
+      {name:"Nikola Vasilj",no:1},{name:"Martin Zlomislić",no:12},{name:"Osman Hadžikić",no:23},
+      {name:"Sead Kolašinac",no:3},{name:"Amar Dedić",no:2},{name:"Nihad Mujakić",no:5},
+      {name:"Nikola Katić",no:4},{name:"Tarik Muharemović",no:6},{name:"Stjepan Radeljić",no:13},
+      {name:"Dennis Hadžikadunić",no:14},{name:"Nidal Čelik",no:22},
+      {name:"Amir Hadžiahmetović",no:8},{name:"Ivan Šunjić",no:15},{name:"Ivan Bašić",no:16},
+      {name:"Dzenis Burnić",no:17},{name:"Ermin Mahmić",no:18},{name:"Benjamin Tahirović",no:19},
+      {name:"Amar Memić",no:20},{name:"Armin Gigović",no:21},{name:"Kerim Alajbegović",no:24},
+      {name:"Esmir Bajraktarević",no:7},
+      {name:"Ermedin Demirović",no:9},{name:"Edin Džeko",no:11},{name:"Samed Bazdar",no:10},
+      {name:"Haris Tabaković",no:25},{name:"Jovo Lukić",no:26}
+    ]
+  },
+  // GROUP C
+  "🇺🇸 United States": {
+    players: [
+      {name:"Matt Turner",no:1},{name:"Ethan Horvath",no:12},{name:"Patrick Schulte",no:23},
+      {name:"Sergiño Dest",no:2},{name:"Antonee Robinson",no:5},{name:"Chris Richards",no:4},
+      {name:"Tim Ream",no:13},{name:"Mark McKenzie",no:3},{name:"Cameron Carter-Vickers",no:6},
+      {name:"Joe Scally",no:22},{name:"Tyler Adams",no:8},{name:"Weston McKennie",no:7},
+      {name:"Yunus Musah",no:14},{name:"Giovanni Reyna",no:10},{name:"Brenden Aaronson",no:11},
+      {name:"Aidan Morris",no:16},{name:"Johnny Cardoso",no:15},{name:"Malik Tillman",no:17},
+      {name:"Christian Pulisic",no:9},{name:"Tim Weah",no:21},{name:"Folarin Balogun",no:20},
+      {name:"Josh Sargent",no:19},{name:"Ricardo Pepi",no:18},{name:"Haji Wright",no:24}
+    ]
+  },
+  "🇪🇬 Egypt": {
+    players: [
+      {name:"Mohamed El-Shenawy",no:1},{name:"Mohamed Abou Gabal",no:16},{name:"Ahmed El-Shennawy",no:23},
+      {name:"Ahmed Hegazy",no:6},{name:"Omar Gaber",no:2},{name:"Ahmed Fatouh",no:3},
+      {name:"Mahmoud Hamdy",no:4},{name:"Ibrahim El-Debes",no:5},{name:"Ali Lotfy",no:13},
+      {name:"Mohamed Elneny",no:8},{name:"Emam Ashour",no:14},{name:"Amr El-Soulia",no:7},
+      {name:"Nayef Aguerd",no:15},{name:"Ibrahim Adel",no:17},{name:"Mahmoud Trezeguet",no:12},
+      {name:"Mohamed Salah",no:10},{name:"Mostafa Mohamed",no:9},{name:"Marwan Hamdi",no:11},
+      {name:"Omar Marmoush",no:18},{name:"Ahmed Kouka",no:19},{name:"Zizo",no:20},
+      {name:"Karim Hafez",no:21},{name:"Mahmoud Hassan",no:22},{name:"Ahmed Sayed",no:24}
+    ]
+  },
+  "🇧🇴 Bolivia": {
+    players: [
+      {name:"Carlos Lampe",no:1},{name:"Guillermo Viscarra",no:12},{name:"Rubén Cordano",no:23},
+      {name:"Jesús Sagredo",no:2},{name:"Diego Bejarano",no:3},{name:"Luis Haquín",no:4},
+      {name:"Adrián Jusino",no:5},{name:"Marc Enoumba",no:6},{name:"Roberto Fernández",no:13},
+      {name:"Leonel Justiniano",no:8},{name:"Ramiro Vaca",no:10},{name:"Erwin Saavedra",no:7},
+      {name:"Boris Céspedes",no:15},{name:"Moisés Villarroel",no:14},{name:"Fernando Saucedo",no:16},
+      {name:"Carmelo Algarañaz",no:9},{name:"Rodrigo Ramallo",no:11},{name:"Víctor Ábrego",no:17},
+      {name:"Bruno Miranda",no:18},{name:"César Menacho",no:19},{name:"Jeyson Chura",no:20},
+      {name:"Miguel Terceros",no:21},{name:"Henry Vaca",no:22},{name:"Enzo Monteiro",no:24}
+    ]
+  },
+  "🇵🇦 Panama": {
+    players: [
+      {name:"Luis Mejía",no:1},{name:"Orlando Mosquera",no:12},{name:"César Samudio",no:23},
+      {name:"Michael Murillo",no:2},{name:"Fidel Escobar",no:3},{name:"Andrés Andrade",no:4},
+      {name:"Román Torres",no:5},{name:"Harold Cummings",no:6},{name:"Eric Davis",no:13},
+      {name:"Aníbal Godoy",no:20},{name:"Alberto Quintero",no:7},{name:"Édgar Bárcenas",no:8},
+      {name:"Adalberto Carrasquilla",no:10},{name:"Freddy Góndola",no:11},{name:"José Luis Rodríguez",no:14},
+      {name:"Rolando Blackburn",no:9},{name:"Gabriel Torres",no:17},{name:"José Fajardo",no:15},
+      {name:"Cecilio Waterman",no:16},{name:"Randall Leal",no:18},{name:"Ismael Díaz",no:19},
+      {name:"Michael Amir Murillo",no:21},{name:"Jorman Aguilar",no:22},{name:"Jiovany Ramos",no:24}
+    ]
+  },
+  // GROUP D
+  "🇧🇷 Brazil": {
+    players: [
+      {name:"Alisson",no:1},{name:"Ederson",no:23},{name:"Weverton",no:12},
+      {name:"Marquinhos",no:4},{name:"Gabriel Magalhães",no:14},{name:"Bremer",no:3},
+      {name:"Danilo",no:2},{name:"Alex Sandro",no:6},{name:"Wesley",no:13},
+      {name:"Roger Ibáñez",no:15},{name:"Douglas Santos",no:16},{name:"Léo Pereira",no:22},
+      {name:"Casemiro",no:5},{name:"Lucas Paquetá",no:10},{name:"Bruno Guimarães",no:7},
+      {name:"Fabinho",no:8},{name:"Danilo Luiz",no:17},
+      {name:"Neymar",no:11},{name:"Vinícius Jr",no:9},{name:"Raphinha",no:18},
+      {name:"Gabriel Martinelli",no:19},{name:"Matheus Cunha",no:20},{name:"Endrick",no:21},
+      {name:"Luiz Henrique",no:24},{name:"Igor Thiago",no:25},{name:"Rayan",no:26}
+    ]
+  },
+  "🇪🇨 Ecuador": {
+    players: [
+      {name:"Hernán Galíndez",no:1},{name:"Alexander Domínguez",no:22},{name:"Moisés Ramírez",no:12},
+      {name:"Ángelo Preciado",no:2},{name:"Piero Hincapié",no:3},{name:"Félix Torres",no:4},
+      {name:"Xavier Arreaga",no:5},{name:"Pervis Estupiñán",no:6},{name:"Diego Palacios",no:13},
+      {name:"Moisés Caicedo",no:10},{name:"Carlos Gruezo",no:8},{name:"Alan Franco",no:7},
+      {name:"Jhegson Méndez",no:14},{name:"Jeremy Sarmiento",no:16},{name:"Gonzalo Plata",no:15},
+      {name:"Enner Valencia",no:9},{name:"Michael Estrada",no:11},{name:"Kendry Páez",no:17},
+      {name:"Kevin Rodríguez",no:18},{name:"John Yeboah",no:19},{name:"Leonardo Campana",no:20},
+      {name:"Joao Rojas",no:21},{name:"Angelo Preciado",no:23},{name:"William Pacho",no:24}
+    ]
+  },
+  "🇳🇬 Nigeria": {
+    players: [
+      {name:"Stanley Nwabali",no:23},{name:"Francis Uzoho",no:1},{name:"Maduka Okoye",no:16},
+      {name:"Ola Aina",no:2},{name:"William Troost-Ekong",no:5},{name:"Calvin Bassey",no:3},
+      {name:"Semi Ajayi",no:6},{name:"Bright Osayi-Samuel",no:13},{name:"Zaidu Sanusi",no:12},
+      {name:"Wilfred Ndidi",no:4},{name:"Alex Iwobi",no:7},{name:"Joe Aribo",no:8},
+      {name:"Ademola Lookman",no:10},{name:"Samuel Chukwueze",no:11},{name:"Moses Simon",no:14},
+      {name:"Victor Osimhen",no:9},{name:"Kelechi Iheanacho",no:17},{name:"Paul Onuachu",no:18},
+      {name:"Victor Boniface",no:19},{name:"Terem Moffi",no:20},{name:"Chidera Ejuke",no:15},
+      {name:"Fisayo Dele-Bashiru",no:21},{name:"Frank Onyeka",no:22},{name:"Raphael Onyedika",no:24}
+    ]
+  },
+  "🇳🇿 New Zealand": {
+    players: [
+      {name:"Stefan Marinovic",no:1},{name:"Alex Paulsen",no:12},{name:"Oliver Sheridan-Mayall",no:23},
+      {name:"Winston Reid",no:4},{name:"Michael Boxall",no:2},{name:"Nando Pijnaker",no:5},
+      {name:"Liberato Cacace",no:3},{name:"Storm Roux",no:13},{name:"Tim Payne",no:6},
+      {name:"Joe Bell",no:7},{name:"Sarpreet Singh",no:8},{name:"Bill Tuiloma",no:15},
+      {name:"Marko Stamenic",no:14},{name:"Elijah Just",no:16},{name:"Matt Garbett",no:10},
+      {name:"Chris Wood",no:9},{name:"Ben Waine",no:11},{name:"Kosta Barbarouses",no:17},
+      {name:"Marco Rojas",no:18},{name:"Alex Greive",no:19},{name:"Logan Rogerson",no:20},
+      {name:"Oskar Zárate",no:21},{name:"Jesse Randall",no:22},{name:"Callum McCowatt",no:24}
+    ]
+  },
+  // GROUP E
+  "🇦🇷 Argentina": {
+    players: [
+      {name:"Emiliano Martínez",no:23},{name:"Gerónimo Rulli",no:12},{name:"Juan Musso",no:1},
+      {name:"Nahuel Molina",no:2},{name:"Cristian Romero",no:13},{name:"Nicolás Otamendi",no:19},
+      {name:"Nicolás Tagliafico",no:3},{name:"Gonzalo Montiel",no:4},{name:"Lisandro Martínez",no:6},
+      {name:"Marcos Senesi",no:14},{name:"Marcos Acuña",no:8},
+      {name:"Rodrigo De Paul",no:7},{name:"Alexis Mac Allister",no:20},{name:"Enzo Fernández",no:24},
+      {name:"Leandro Paredes",no:5},{name:"Giovani Lo Celso",no:18},{name:"Exequiel Palacios",no:15},
+      {name:"Thiago Almada",no:16},{name:"Lionel Messi",no:10},{name:"Julián Álvarez",no:9},
+      {name:"Lautaro Martínez",no:22},{name:"Ángel Di María",no:11},{name:"Paulo Dybala",no:21},
+      {name:"Alejandro Garnacho",no:17},{name:"Giuliano Simeone",no:25},{name:"Franco Mastantuono",no:26}
+    ]
+  },
+  "🇩🇿 Algeria": {
+    players: [
+      {name:"Raïs M'Bolhi",no:1},{name:"Anthony Mandrea",no:16},{name:"Alexandre Oukidja",no:23},
+      {name:"Aïssa Mandi",no:5},{name:"Ramy Bensebaini",no:2},{name:"Djamel Benlamri",no:4},
+      {name:"Youcef Atal",no:3},{name:"Abdelkader Bedrane",no:6},{name:"Hocine Benayada",no:13},
+      {name:"Ismaël Bennacer",no:8},{name:"Sofiane Feghouli",no:7},{name:"Ramiz Zerrouki",no:10},
+      {name:"Houssem Aouar",no:14},{name:"Nabil Bentaleb",no:15},{name:"Hicham Boudaoui",no:16},
+      {name:"Riyad Mahrez",no:9},{name:"Islam Slimani",no:11},{name:"Baghdad Bounedjah",no:17},
+      {name:"Yacine Brahimi",no:18},{name:"Said Benrahma",no:19},{name:"Amine Gouiri",no:20},
+      {name:"Mohamed Amoura",no:21},{name:"Adam Ounas",no:22},{name:"Andy Delort",no:24}
+    ]
+  },
+  "🇯🇴 Jordan": {
+    players: [
+      {name:"Yazeed Abulaila",no:1},{name:"Ahmad Al-Turk",no:22},{name:"Mohanad Khaled",no:23},
+      {name:"Anas Bani Yaseen",no:4},{name:"Salem Al-Ajalin",no:3},{name:"Abdallah Nasib",no:5},
+      {name:"Ehsan Haddad",no:2},{name:"Feras Shelbaieh",no:6},{name:"Yazan Al-Arab",no:13},
+      {name:"Baha Faisal",no:8},{name:"Mousa Al-Taamari",no:7},{name:"Nizar Al-Rashdan",no:10},
+      {name:"Yazan Al-Naimat",no:9},{name:"Ali Olwan",no:11},{name:"Ahmad Ersan",no:14},
+      {name:"Hamza Al-Dardour",no:15},{name:"Musa Mustafa",no:16},{name:"Obeida Al-Samareen",no:17},
+      {name:"Yousef Al-Rawashdeh",no:18},{name:"Al-Moatasem Nabeel",no:19},{name:"Mohammad Abu Zrayq",no:20},
+      {name:"Odai Al-Saify",no:21},{name:"Sanad Ahmed",no:24},{name:"Wesam Abu Ali",no:12}
+    ]
+  },
+  "🇮🇶 Iraq": {
+    players: [
+      {name:"Jalal Hassan",no:1},{name:"Mohammed Hameed",no:22},{name:"Fahad Talib",no:23},
+      {name:"Ali Adnan",no:3},{name:"Ahmed Ibrahim",no:4},{name:"Rebin Sulaka",no:5},
+      {name:"Saad Natiq",no:2},{name:"Ali Faez",no:6},{name:"Sherko Kareem",no:13},
+      {name:"Amjad Attwan",no:8},{name:"Ibrahim Bayesh",no:10},{name:"Ayman Hussein",no:7},
+      {name:"Hussein Ali",no:14},{name:"Alaa Abbas",no:15},{name:"Mohammed Qasim",no:16},
+      {name:"Mohanad Ali",no:9},{name:"Aymen Husain",no:11},{name:"Ali Jasim",no:17},
+      {name:"Zidane Iqbal",no:18},{name:"Ahmed Yasin",no:19},{name:"Justin Meram",no:20},
+      {name:"Manaf Younis",no:21},{name:"Bashar Resan",no:12},{name:"Mohammed Dawood",no:24}
+    ]
+  },
+  // GROUP F
+  "🇳🇱 Netherlands": {
+    players: [
+      {name:"Bart Verbruggen",no:1},{name:"Mark Flekken",no:23},{name:"Justin Bijlow",no:16},
+      {name:"Virgil van Dijk",no:4},{name:"Nathan Aké",no:5},{name:"Stefan de Vrij",no:6},
+      {name:"Denzel Dumfries",no:2},{name:"Jurriën Timber",no:3},{name:"Lutsharel Geertruida",no:22},
+      {name:"Micky van de Ven",no:13},{name:"Ian Maatsen",no:15},
+      {name:"Frenkie de Jong",no:21},{name:"Ryan Gravenberch",no:8},{name:"Tijjani Reijnders",no:14},
+      {name:"Teun Koopmeiners",no:7},{name:"Jerdy Schouten",no:17},{name:"Xavi Simons",no:10},
+      {name:"Memphis Depay",no:9},{name:"Cody Gakpo",no:18},{name:"Donyell Malen",no:11},
+      {name:"Steven Bergwijn",no:19},{name:"Wout Weghorst",no:20},{name:"Joshua Zirkzee",no:12},
+      {name:"Brian Brobbey",no:24},{name:"Jeremie Frimpong",no:25}
+    ]
+  },
+  "🇯🇵 Japan": {
+    players: [
+      {name:"Zion Suzuki",no:1},{name:"Shūichi Gonda",no:12},{name:"Kosei Tani",no:23},
+      {name:"Takehiro Tomiyasu",no:2},{name:"Ko Itakura",no:4},{name:"Shogo Taniguchi",no:5},
+      {name:"Yuto Nagatomo",no:6},{name:"Miki Yamane",no:3},{name:"Hiroki Ito",no:22},
+      {name:"Wataru Endo",no:8},{name:"Hidemasa Morita",no:7},{name:"Daichi Kamada",no:10},
+      {name:"Takefusa Kubo",no:9},{name:"Kaoru Mitoma",no:11},{name:"Ritsu Doan",no:14},
+      {name:"Junya Ito",no:13},{name:"Takumi Minamino",no:18},{name:"Ao Tanaka",no:15},
+      {name:"Keito Nakamura",no:16},{name:"Kyogo Furuhashi",no:17},
+      {name:"Ayase Ueda",no:19},{name:"Daizen Maeda",no:20},{name:"Koji Miyoshi",no:21},
+      {name:"Reo Hatate",no:24},{name:"Kuryu Matsuki",no:25}
+    ]
+  },
+  "🇹🇳 Tunisia": {
+    players: [
+      {name:"Aymen Dahmen",no:1},{name:"Mouez Hassen",no:16},{name:"Béchir Ben Saïd",no:23},
+      {name:"Mohamed Dräger",no:2},{name:"Dylan Bronn",no:5},{name:"Montassar Talbi",no:6},
+      {name:"Ali Abdi",no:3},{name:"Nader Ghandri",no:4},{name:"Yan Valery",no:13},
+      {name:"Aïssa Laïdouni",no:8},{name:"Ellyes Skhiri",no:7},{name:"Hannibal Mejbri",no:10},
+      {name:"Mohamed Ali Ben Romdhane",no:14},{name:"Saîf-Eddine Khaoui",no:15},
+      {name:"Wahbi Khazri",no:9},{name:"Youssef Msakni",no:11},{name:"Naïm Sliti",no:17},
+      {name:"Seifeddine Jaziri",no:18},{name:"Issam Jebali",no:19},{name:"Anis Ben Slimane",no:20},
+      {name:"Hamza Rafiaa",no:21},{name:"Ferjani Sassi",no:12},{name:"Mohamed Amine Ben Hmida",no:22}
+    ]
+  },
+  "🇸🇪 Sweden": {
+    players: [
+      {name:"Robin Olsen",no:1},{name:"Karl-Johan Johnsson",no:12},{name:"Caoimhin Kelleher",no:23},
+      {name:"Emil Krafth",no:2},{name:"Victor Lindelöf",no:3},{name:"Hjalmar Ekdal",no:4},
+      {name:"Carl Starfelt",no:5},{name:"Ludwig Augustinsson",no:6},{name:"Gabriel Gudmundsson",no:13},
+      {name:"Viktor Claesson",no:7},{name:"Albin Ekdal",no:8},{name:"Alexander Isak",no:10},
+      {name:"Sebastian Larsson",no:14},{name:"Jens Cajuste",no:15},{name:"Mattias Svanberg",no:16},
+      {name:"Viktor Gyökeres",no:9},{name:"Dejan Kulusevski",no:11},{name:"Anthony Elanga",no:17},
+      {name:"Hugo Larsson",no:18},{name:"Jesper Karlström",no:19},{name:"Robin Quaison",no:20},
+      {name:"Yasin Ayari",no:21},{name:"Ken Sema",no:22},{name:"Jordan Larsson",no:24}
+    ]
+  },
+  // GROUP G
+  "🇬🇧 England": {
+    players: [
+      {name:"Jordan Pickford",no:1},{name:"Aaron Ramsdale",no:23},{name:"Dean Henderson",no:13},
+      {name:"Kyle Walker",no:2},{name:"John Stones",no:5},{name:"Harry Maguire",no:6},
+      {name:"Marc Guéhi",no:14},{name:"Trent Alexander-Arnold",no:22},{name:"Luke Shaw",no:3},
+      {name:"Levi Colwill",no:15},{name:"Rico Lewis",no:16},
+      {name:"Declan Rice",no:4},{name:"Jude Bellingham",no:10},{name:"Kobbie Mainoo",no:8},
+      {name:"Phil Foden",no:7},{name:"Cole Palmer",no:20},{name:"Conor Gallagher",no:17},
+      {name:"Adam Wharton",no:18},
+      {name:"Harry Kane",no:9},{name:"Bukayo Saka",no:11},{name:"Anthony Gordon",no:19},
+      {name:"Ollie Watkins",no:21},{name:"Eberechi Eze",no:12},{name:"Jarrod Bowen",no:24},
+      {name:"Morgan Gibbs-White",no:25},{name:"Lamine Yamal",no:26}
+    ]
+  },
+  "🇸🇳 Senegal": {
+    players: [
+      {name:"Édouard Mendy",no:1},{name:"Seny Dieng",no:16},{name:"Mame Thierno Ly",no:23},
+      {name:"Kalidou Koulibaly",no:3},{name:"Abdou Diallo",no:5},{name:"Youssouf Sabaly",no:2},
+      {name:"Pape Abou Cissé",no:4},{name:"Ismail Jakobs",no:6},{name:"Formose Mendy",no:13},
+      {name:"Idrissa Gueye",no:7},{name:"Nampalys Mendy",no:8},{name:"Pape Matar Sarr",no:14},
+      {name:"Krepin Diatta",no:10},{name:"Moussa Niakhaté",no:15},{name:"Pathé Ciss",no:16},
+      {name:"Sadio Mané",no:9},{name:"Ismaïla Sarr",no:11},{name:"Boulaye Dia",no:17},
+      {name:"Nicolas Jackson",no:18},{name:"Habib Diallo",no:19},{name:"Iliman Ndiaye",no:20},
+      {name:"Lamine Camara",no:21},{name:"Abdoulaye Seck",no:22},{name:"Mikayil Faye",no:24}
+    ]
+  },
+  "🇬🇭 Ghana": {
+    players: [
+      {name:"Lawrence Ati-Zigi",no:1},{name:"Richard Ofori",no:12},{name:"Ibrahim Danlad",no:23},
+      {name:"Tariq Lamptey",no:2},{name:"Alexander Djiku",no:4},{name:"Mohammed Salisu",no:3},
+      {name:"Daniel Amartey",no:5},{name:"Alidu Seidu",no:13},{name:"Gideon Mensah",no:6},
+      {name:"Thomas Partey",no:8},{name:"Mohammed Kudus",no:10},{name:"Ibrahim Sulemana",no:14},
+      {name:"Elisha Owusu",no:15},{name:"Salis Abdul Samed",no:7},{name:"Daniel Kofi Kyereh",no:16},
+      {name:"Jordan Ayew",no:9},{name:"Iñaki Williams",no:11},{name:"Antoine Semenyo",no:17},
+      {name:"Osman Bukari",no:18},{name:"Ernest Nuamah",no:19},{name:"Abdul Fatawu Issahaku",no:20},
+      {name:"Kamaldeen Sulemana",no:21},{name:"Andre Ayew",no:22},{name:"Ransford-Yeboah Königsdörffer",no:24}
+    ]
+  },
+  "🇺🇿 Uzbekistan": {
+    players: [
+      {name:"Vladimir Nazarov",no:1},{name:"Utkir Yusupov",no:12},{name:"Botirali Ergashev",no:23},
+      {name:"Ibrohimkhalil Yuldoshev",no:2},{name:"Abdukodir Khusanov",no:4},{name:"Rustamjon Ashurmatov",no:5},
+      {name:"Jakhongir Urozov",no:3},{name:"Abdulla Abdullaev",no:6},{name:"Farrukh Sayfiev",no:13},
+      {name:"Otabek Shukurov",no:8},{name:"Jamshid Iskanderov",no:7},{name:"Jasurbek Jaloliddinov",no:10},
+      {name:"Kuvondik Ruziev",no:14},{name:"Nodirbek Abdurazzokov",no:15},{name:"Odiljon Khamrobekov",no:16},
+      {name:"Eldor Shomurodov",no:9},{name:"Abbosbek Fayzullaev",no:11},{name:"Jaloliddin Masharipov",no:17},
+      {name:"Dostonbek Khamdamov",no:18},{name:"Oston Urunov",no:19},{name:"Azizbek Amonov",no:20},
+      {name:"Igor Sergeev",no:21},{name:"Sherzod Temirov",no:22},{name:"Ruslanbek Jiyanov",no:24}
+    ]
+  },
+  // GROUP H
+  "🇵🇹 Portugal": {
+    players: [
+      {name:"Diogo Costa",no:1},{name:"Rui Patrício",no:12},{name:"José Sá",no:22},
+      {name:"João Cancelo",no:2},{name:"Rúben Dias",no:4},{name:"Pepe",no:3},
+      {name:"Nuno Mendes",no:5},{name:"Diogo Dalot",no:20},{name:"Gonçalo Inácio",no:6},
+      {name:"António Silva",no:14},{name:"Nélson Semedo",no:22},
+      {name:"Bruno Fernandes",no:8},{name:"Bernardo Silva",no:10},{name:"Vitinha",no:13},
+      {name:"João Palhinha",no:7},{name:"Rúben Neves",no:15},{name:"Otávio",no:16},
+      {name:"João Neves",no:17},
+      {name:"Cristiano Ronaldo",no:9},{name:"Rafael Leão",no:11},{name:"Diogo Jota",no:18},
+      {name:"Gonçalo Ramos",no:19},{name:"Pedro Neto",no:21},{name:"Francisco Conceição",no:23},
+      {name:"João Félix",no:24}
+    ]
+  },
+  "🇺🇾 Uruguay": {
+    players: [
+      {name:"Sergio Rochet",no:1},{name:"Fernando Muslera",no:12},{name:"Santiago Mele",no:23},
+      {name:"José María Giménez",no:2},{name:"Diego Godín",no:3},{name:"Ronald Araújo",no:4},
+      {name:"Mathías Olivera",no:16},{name:"Guillermo Varela",no:6},{name:"Sebastián Cáceres",no:5},
+      {name:"Nahitan Nández",no:13},{name:"Santiago Bueno",no:22},
+      {name:"Federico Valverde",no:8},{name:"Rodrigo Bentancur",no:7},{name:"Manuel Ugarte",no:14},
+      {name:"Nicolás De La Cruz",no:10},{name:"Giorgian De Arrascaeta",no:15},
+      {name:"Darwin Núñez",no:9},{name:"Luis Suárez",no:11},{name:"Facundo Pellistri",no:17},
+      {name:"Maximiliano Gómez",no:18},{name:"Agustín Canobbio",no:19},{name:"Facundo Torres",no:20},
+      {name:"Cristian Olivera",no:21},{name:"Luciano Rodríguez",no:24}
+    ]
+  },
+  "🇮🇩 Indonesia": {
+    players: [
+      {name:"Nadeo Argawinata",no:1},{name:"Ernando Ari",no:12},{name:"Muhammad Ridho",no:23},
+      {name:"Asnawi Mangkualam",no:2},{name:"Elkan Baggott",no:4},{name:"Jordi Amat",no:5},
+      {name:"Jay Idzes",no:3},{name:"Rizky Ridho",no:6},{name:"Pratama Arhan",no:13},
+      {name:"Marc Klok",no:8},{name:"Marselino Ferdinan",no:7},{name:"Egy Maulana Vikri",no:10},
+      {name:"Ivar Jenner",no:14},{name:"Thom Haye",no:15},{name:"Nathan Tjoe-A-On",no:16},
+      {name:"Ilija Spasojević",no:9},{name:"Ragnar Oratmangoen",no:11},{name:"Rafael Struick",no:17},
+      {name:"Sandy Walsh",no:18},{name:"Saddil Ramdani",no:19},{name:"Dendy Sulistyawan",no:20},
+      {name:"Justin Hubner",no:21},{name:"Mees Hilgers",no:22},{name:"Shayne Pattynama",no:24}
+    ]
+  },
+  "🇸🇦 Saudi Arabia": {
+    players: [
+      {name:"Mohammed Al-Owais",no:1},{name:"Mohammed Al-Rubaie",no:21},{name:"Nawaf Al-Aqidi",no:22},
+      {name:"Yasser Al-Shahrani",no:2},{name:"Ali Al-Bulaihi",no:4},{name:"Abdulelah Al-Amri",no:5},
+      {name:"Hassan Al-Tambakti",no:6},{name:"Saud Abdulhamid",no:3},{name:"Sultan Al-Ghannam",no:13},
+      {name:"Salman Al-Faraj",no:7},{name:"Mohamed Kanno",no:8},{name:"Abdulellah Al-Malki",no:14},
+      {name:"Sami Al-Najei",no:10},{name:"Nasser Al-Dawsari",no:15},{name:"Feras Al-Brikan",no:16},
+      {name:"Saleh Al-Shehri",no:9},{name:"Salem Al-Dawsari",no:11},{name:"Firas Al-Buraikan",no:17},
+      {name:"Abdullah Al-Hamdan",no:18},{name:"Ayman Yahya",no:19},{name:"Hassan Kadesh",no:20},
+      {name:"Hattan Bahebri",no:12},{name:"Abdulrahman Ghareeb",no:23},{name:"Ali Al-Hassan",no:24}
+    ]
+  },
+  // GROUP I
+  "🇪🇸 Spain": {
+    players: [
+      {name:"Unai Simón",no:23},{name:"David Raya",no:13},{name:"Robert Sánchez",no:1},
+      {name:"Dani Carvajal",no:2},{name:"Aymeric Laporte",no:4},{name:"Robin Le Normand",no:24},
+      {name:"Marc Cucurella",no:6},{name:"Alejandro Grimaldo",no:3},{name:"Pau Cubarsí",no:14},
+      {name:"César Azpilicueta",no:15},
+      {name:"Rodri",no:8},{name:"Pedri",no:10},{name:"Gavi",no:7},{name:"Fabián Ruiz",no:5},
+      {name:"Dani Olmo",no:20},{name:"Fermín López",no:16},{name:"Mikel Merino",no:17},
+      {name:"Lamine Yamal",no:11},{name:"Nico Williams",no:9},{name:"Álvaro Morata",no:18},
+      {name:"Ferran Torres",no:19},{name:"Mikel Oyarzabal",no:21},{name:"Ayoze Pérez",no:22},
+      {name:"Joselu",no:12},{name:"Yeremy Pino",no:25}
+    ]
+  },
+  "🇨🇴 Colombia": {
+    players: [
+      {name:"Camilo Vargas",no:1},{name:"David Ospina",no:12},{name:"Álvaro Montero",no:23},
+      {name:"Daniel Muñoz",no:2},{name:"Yerry Mina",no:3},{name:"Davinson Sánchez",no:4},
+      {name:"Johan Mojica",no:5},{name:"Jhon Lucumí",no:6},{name:"Santiago Arias",no:13},
+      {name:"Yerson Mosquera",no:14},{name:"Carlos Cuesta",no:22},
+      {name:"Jefferson Lerma",no:8},{name:"James Rodríguez",no:10},{name:"Wilmar Barrios",no:7},
+      {name:"Juan Fernando Quintero",no:15},{name:"Richard Ríos",no:16},{name:"Gustavo Puerta",no:17},
+      {name:"Luis Díaz",no:9},{name:"Jhon Arias",no:11},{name:"Rafael Santos Borré",no:18},
+      {name:"Yaser Asprilla",no:19},{name:"Juan Camilo Portilla",no:20},{name:"Jorge Carrascal",no:21},
+      {name:"Nelson Deossa",no:24},{name:"Luis Sinisterra",no:25}
+    ]
+  },
+  "🇩🇷🇨 DR Congo": {
+    players: [
+      {name:"Lionel Mpasi",no:1},{name:"Timothy Fayulu",no:16},{name:"Matthieu Epolo",no:23},
+      {name:"Chancel Mbemba",no:4},{name:"Arthur Masuaku",no:3},{name:"Gedeon Kalulu",no:5},
+      {name:"Axel Tuanzebe",no:2},{name:"Aaron Wan-Bissaka",no:6},{name:"Rocky Bushiri",no:13},
+      {name:"Steve Kapuadi",no:14},{name:"Dylan Batubinsika",no:22},{name:"Joris Kayembe",no:15},
+      {name:"Meschack Elia",no:7},{name:"Samuel Moutoussamy",no:8},{name:"Edo Kayembe",no:10},
+      {name:"Charles Pickel",no:12},{name:"Gael Kakuta",no:17},{name:"Noah Sadiki",no:18},
+      {name:"Nathanael Mbuku",no:19},{name:"Ngal'ayel Mukau",no:20},{name:"Brian Cipenga",no:21},
+      {name:"Cédric Bakambu",no:9},{name:"Fiston Mayele",no:11},{name:"Yoane Wissa",no:24},
+      {name:"Simon Banza",no:25},{name:"Theo Bongonda",no:26}
+    ]
+  },
+  "🇵🇾 Paraguay": {
+    players: [
+      {name:"Antony Silva",no:1},{name:"Alfaro Ortega",no:12},{name:"Rodrigo Muñoz",no:23},
+      {name:"Alberto Espínola",no:2},{name:"Gustavo Gómez",no:3},{name:"Fabián Balbuena",no:4},
+      {name:"Júnior Alonso",no:5},{name:"Omar Alderete",no:6},{name:"Robert Rojas",no:13},
+      {name:"Andrés Cubas",no:8},{name:"Mathías Villasanti",no:7},{name:"Óscar Romero",no:10},
+      {name:"Richard Sánchez",no:14},{name:"Ángel Romero",no:11},{name:"Matías Rojas",no:15},
+      {name:"Miguel Almirón",no:9},{name:"Julio Enciso",no:17},{name:"Ramón Sosa",no:18},
+      {name:"Derlis González",no:16},{name:"Antonio Sanabria",no:19},{name:"Adam Bareiro",no:20},
+      {name:"Alex Arce",no:21},{name:"Diego León",no:22},{name:"Gabriel Avalos",no:24}
+    ]
+  },
+  // GROUP J
+  "🇩🇪 Germany": {
+    players: [
+      {name:"Manuel Neuer",no:1},{name:"Marc-André ter Stegen",no:12},{name:"Oliver Baumann",no:23},
+      {name:"Joshua Kimmich",no:6},{name:"Antonio Rüdiger",no:4},{name:"Jonathan Tah",no:5},
+      {name:"David Raum",no:3},{name:"Robin Gosens",no:20},{name:"Nico Schlotterbeck",no:2},
+      {name:"Benjamin Henrichs",no:22},{name:"Waldemar Anton",no:13},
+      {name:"İlkay Gündoğan",no:8},{name:"Toni Kroos",no:10},{name:"Robert Andrich",no:7},
+      {name:"Jamal Musiala",no:14},{name:"Florian Wirtz",no:17},{name:"Chris Führich",no:16},
+      {name:"Pascal Groß",no:15},{name:"Aleksandar Pavlović",no:18},
+      {name:"Kai Havertz",no:9},{name:"Leroy Sané",no:11},{name:"Serge Gnabry",no:19},
+      {name:"Niclas Füllkrug",no:21},{name:"Deniz Undav",no:24},{name:"Tim Kleindienst",no:25}
+    ]
+  },
+  "🇨🇮 Ivory Coast": {
+    players: [
+      {name:"Yahia Fofana",no:1},{name:"Badra Ali Sangaré",no:16},{name:"Eliezer Ira",no:23},
+      {name:"Serge Aurier",no:2},{name:"Odilon Kossounou",no:3},{name:"Willy Boly",no:4},
+      {name:"Ghislain Konan",no:5},{name:"Evan Ndicka",no:6},{name:"Sinaly Diomandé",no:13},
+      {name:"Franck Kessié",no:8},{name:"Seko Fofana",no:10},{name:"Jean Michaël Seri",no:7},
+      {name:"Ibrahim Sangaré",no:14},{name:"Hamed Junior Traoré",no:15},{name:"Jeremie Boga",no:16},
+      {name:"Sébastien Haller",no:9},{name:"Nicolas Pépé",no:11},{name:"Wilfried Zaha",no:17},
+      {name:"Max-Alain Gradel",no:18},{name:"Simon Adingra",no:19},{name:"Oumar Diakité",no:20},
+      {name:"Christian Kouamé",no:21},{name:"Karim Konaté",no:22},{name:"Ousmane Diomandé",no:24}
+    ]
+  },
+  "🇭🇷 Croatia": {
+    players: [
+      {name:"Dominik Livaković",no:1},{name:"Ivica Ivušić",no:12},{name:"Nediljko Labrović",no:23},
+      {name:"Josip Stanišić",no:2},{name:"Joško Gvardiol",no:4},{name:"Duje Ćaleta-Car",no:5},
+      {name:"Martin Erlić",no:6},{name:"Borna Sosa",no:3},{name:"Josip Juranović",no:22},
+      {name:"Josip Šutalo",no:13},{name:"Igor Prahić",no:14},
+      {name:"Luka Modrić",no:10},{name:"Mateo Kovačić",no:8},{name:"Marcelo Brozović",no:7},
+      {name:"Lovro Majer",no:15},{name:"Mario Pašalić",no:16},{name:"Nikola Vlašić",no:17},
+      {name:"Luka Sučić",no:18},
+      {name:"Ivan Perišić",no:4},{name:"Andrej Kramarić",no:9},{name:"Bruno Petković",no:19},
+      {name:"Ante Budimir",no:20},{name:"Marko Pjaca",no:21},{name:"Martin Baturina",no:24}
+    ]
+  },
+  "🇨🇼 Curaçao": {
+    players: [
+      {name:"Eloy Room",no:1},{name:"Trevor Doornbusch",no:12},{name:"Tyrick Bodak",no:23},
+      {name:"Jurien Gaari",no:2},{name:"Roshon van Eijma",no:3},{name:"Sherel Floranus",no:4},
+      {name:"Joshua Brenet",no:5},{name:"Shurandy Sambo",no:6},{name:"Armando Obispo",no:13},
+      {name:"Riechedly Bazoer",no:8},{name:"Deveron Fonville",no:14},{name:"Leandro Bacuna",no:7},
+      {name:"Kenji Gorré",no:10},{name:"Jarchinio Antonia",no:15},{name:"Michaël Maria",no:16},
+      {name:"Rangelo Janga",no:9},{name:"Juninho Bacuna",no:11},{name:"Jafar Arias",no:17},
+      {name:"Brandley Kuwas",no:18},{name:"Gervane Kastaneer",no:19},{name:"Elson Hooi",no:20},
+      {name:"Darryl Lachman",no:21},{name:"Cuco Martina",no:22},{name:"Jeredy Hilterman",no:24}
+    ]
+  },
+  // GROUP K
+  "🇫🇷 France": {
+    players: [
+      {name:"Mike Maignan",no:1},{name:"Alphonse Areola",no:16},{name:"Brice Samba",no:23},
+      {name:"Jules Koundé",no:2},{name:"Dayot Upamecano",no:4},{name:"William Saliba",no:5},
+      {name:"Theo Hernández",no:3},{name:"Ibrahima Konaté",no:6},{name:"Ferland Mendy",no:22},
+      {name:"Benjamin Pavard",no:13},
+      {name:"N'Golo Kanté",no:7},{name:"Aurélien Tchouaméni",no:8},{name:"Eduardo Camavinga",no:14},
+      {name:"Youssouf Fofana",no:15},{name:"Warren Zaïre-Emery",no:17},{name:"Adrien Rabiot",no:16},
+      {name:"Kylian Mbappé",no:10},{name:"Antoine Griezmann",no:9},{name:"Ousmane Dembélé",no:11},
+      {name:"Randal Kolo Muani",no:12},{name:"Marcus Thuram",no:18},{name:"Olivier Giroud",no:19},
+      {name:"Bradley Barcola",no:20},{name:"Michael Olise",no:21},{name:"Christopher Nkunku",no:24}
+    ]
+  },
+  "🇦🇹 Austria": {
+    players: [
+      {name:"Patrick Pentz",no:1},{name:"Heinz Lindner",no:12},{name:"Niklas Hedl",no:23},
+      {name:"Stefan Posch",no:2},{name:"David Alaba",no:4},{name:"Kevin Danso",no:5},
+      {name:"Philipp Lienhart",no:6},{name:"Philipp Mwene",no:3},{name:"Maximilian Wöber",no:13},
+      {name:"Flavius Daniliuc",no:22},
+      {name:"Marcel Sabitzer",no:7},{name:"Konrad Laimer",no:8},{name:"Nicolas Seiwald",no:14},
+      {name:"Florian Grillitsch",no:15},{name:"Christoph Baumgartner",no:10},{name:"Alexander Prass",no:16},
+      {name:"Romano Schmid",no:17},
+      {name:"Marko Arnautović",no:9},{name:"Michael Gregoritsch",no:11},{name:"Patrick Wimmer",no:18},
+      {name:"Maximilian Entrup",no:19},{name:"Christoph Baumgartner",no:20},{name:"Junior Adamu",no:21},
+      {name:"Thierno Ballo",no:24}
+    ]
+  },
+  "🇭🇹 Haiti": {
+    players: [
+      {name:"Johny Placide",no:1},{name:"Alexandre Pierre",no:16},{name:"Josué Duverger",no:23},
+      {name:"Ricardo Adé",no:2},{name:"Carlens Arcus",no:3},{name:"Martin Experience",no:4},
+      {name:"Jean-Kevin Duverne",no:5},{name:"Duke Lacroix",no:6},{name:"Wilguens Paugain",no:13},
+      {name:"Hannes Delcroix",no:14},{name:"Keeto Thermoncy",no:22},
+      {name:"Leverton Pierre",no:7},{name:"Danley Jean Jacques",no:8},{name:"Carl Sainte",no:10},
+      {name:"Jean-Ricner Bellegarde",no:15},{name:"Woodensky Pierre",no:17},{name:"Dominique Simon",no:18},
+      {name:"Duckens Nazon",no:9},{name:"Frantzdy Pierrot",no:11},{name:"Derrick Étienne Jr",no:19},
+      {name:"Louicius Deedson",no:20},{name:"Ruben Providence",no:21},{name:"Josué Casimir",no:12},
+      {name:"Yassin Fortune",no:24},{name:"Wilson Isidor",no:25},{name:"Lenny Joseph",no:26}
+    ]
+  },
+  "🇰🇪 Kenya": {
+    players: [
+      {name:"Patrick Matasi",no:1},{name:"Ian Otieno",no:16},{name:"Bryne Omondi",no:23},
+      {name:"Philemon Otieno",no:2},{name:"Joseph Okumu",no:4},{name:"Joash Onyango",no:5},
+      {name:"Eric Ouma",no:3},{name:"Daniel Sakari",no:6},{name:"Harun Shakava",no:13},
+      {name:"Kenneth Muguna",no:7},{name:"Victor Wanyama",no:8},{name:"Richard Odada",no:10},
+      {name:"Duke Abuya",no:14},{name:"Anthony Akumu",no:15},{name:"Cliff Nyakeya",no:16},
+      {name:"Michael Olunga",no:9},{name:"Masud Juma",no:11},{name:"Ayub Timbe",no:17},
+      {name:"John Avire",no:18},{name:"Boniface Muchiri",no:19},{name:"Timothy Ouma",no:20},
+      {name:"Benson Omala",no:21},{name:"Rooney Onyango",no:22},{name:"Jonah Ayunga",no:24}
+    ]
+  },
+  // GROUP L
+  "🇧🇪 Belgium": {
+    players: [
+      {name:"Thibaut Courtois",no:1},{name:"Senne Lammens",no:12},{name:"Mike Penders",no:23},
+      {name:"Timothy Castagne",no:2},{name:"Zeno Debast",no:4},{name:"Maxim De Cuyper",no:5},
+      {name:"Koni De Winter",no:6},{name:"Brandon Mechele",no:3},{name:"Thomas Meunier",no:22},
+      {name:"Nathan Ngoy",no:13},{name:"Joaquín Seys",no:14},{name:"Arthur Theate",no:15},
+      {name:"Kevin De Bruyne",no:7},{name:"Amadou Onana",no:8},{name:"Nicolas Raskin",no:10},
+      {name:"Youri Tielemans",no:16},{name:"Hans Vanaken",no:17},{name:"Axel Witsel",no:18},
+      {name:"Charles De Ketelaere",no:9},{name:"Jérémy Doku",no:11},{name:"Romelu Lukaku",no:19},
+      {name:"Dodi Lukebakio",no:20},{name:"Leandro Trossard",no:21},{name:"Alexis Saelemaekers",no:24},
+      {name:"Matías Fernández-Pardo",no:25},{name:"Diego Moreira",no:26}
+    ]
+  },
+  "🇲🇦 Morocco": {
+    players: [
+      {name:"Yassine Bounou",no:1},{name:"Munir Mohamedi",no:12},{name:"Anas Zniti",no:23},
+      {name:"Achraf Hakimi",no:2},{name:"Nayef Aguerd",no:5},{name:"Romain Saïss",no:6},
+      {name:"Noussair Mazraoui",no:3},{name:"Achraf Dari",no:4},{name:"Jawad El Yamiq",no:13},
+      {name:"Adam Masina",no:22},{name:"Bilal El Khannouss",no:14},
+      {name:"Sofyan Amrabat",no:8},{name:"Azzedine Ounahi",no:7},{name:"Selim Amallah",no:15},
+      {name:"Ilias Chair",no:16},{name:"Abdelhamid Sabiri",no:17},
+      {name:"Hakim Ziyech",no:10},{name:"Youssef En-Nesyri",no:9},{name:"Sofiane Boufal",no:11},
+      {name:"Abde Ezzalzouli",no:18},{name:"Ayoub El Kaabi",no:19},{name:"Brahim Díaz",no:20},
+      {name:"Amine Harit",no:21},{name:"Zakaria Aboukhlal",no:24}
+    ]
+  },
+  "🇳🇴 Norway": {
+    players: [
+      {name:"Ørjan Nyland",no:1},{name:"Mads Hermansen",no:12},{name:"Per Kristian Bråtveit",no:23},
+      {name:"Marcus Holmgren Pedersen",no:2},{name:"Leo Skiri Østigård",no:4},{name:"Stefan Strandberg",no:5},
+      {name:"Birger Meling",no:3},{name:"Fredrik Bjørkan",no:6},{name:"Andreas Hanche-Olsen",no:13},
+      {name:"David Møller Wolfe",no:22},
+      {name:"Martin Ødegaard",no:10},{name:"Sander Berge",no:8},{name:"Fredrik Aursnes",no:7},
+      {name:"Morten Thorsby",no:14},{name:"Patrick Berg",no:15},{name:"Jens Petter Hauge",no:16},
+      {name:"Antonio Nusa",no:17},
+      {name:"Erling Haaland",no:9},{name:"Alexander Sørloth",no:11},{name:"Mohamed Elyounoussi",no:18},
+      {name:"Oscar Bobb",no:19},{name:"Ola Solbakken",no:20},{name:"Joshua King",no:21},
+      {name:"Jørgen Strand Larsen",no:24}
+    ]
+  },
+  "🇨🇻 Cape Verde": {
+    players: [
+      {name:"Vozinha",no:1},{name:"Dylan Silva",no:12},{name:"Márcio Rosa",no:23},
+      {name:"Steven Fortes",no:2},{name:"Roberto Lopes",no:4},{name:"Logan Costa",no:5},
+      {name:"Stopira",no:3},{name:"Jeffrey Fortes",no:6},{name:"Kevin Borges",no:13},
+      {name:"Nuno Borges",no:8},{name:"Kenny Rocha Santos",no:7},{name:"Patrick Andrade",no:10},
+      {name:"Jamiro Monteiro",no:14},{name:"Jovane Cabral",no:15},{name:"Hélder Tavares",no:16},
+      {name:"Garry Rodrigues",no:9},{name:"Ryan Mendes",no:11},{name:"Lisandro Semedo",no:17},
+      {name:"Djaniny",no:18},{name:"Júlio Tavares",no:19},{name:"Bebé",no:20},
+      {name:"Willis Furtado",no:21},{name:"Wélber",no:22},{name:"Gilson Benchimol",no:24}
+    ]
+  },
+  // Additional teams
+  "🇮🇷 Iran": {
+    players: [
+      {name:"Alireza Beiranvand",no:1},{name:"Hossein Hosseini",no:12},{name:"Payam Niazmand",no:22},
+      {name:"Sadegh Moharrami",no:2},{name:"Shoja Khalilzadeh",no:4},{name:"Morteza Pouraliganji",no:5},
+      {name:"Milad Mohammadi",no:3},{name:"Hossein Kanaani",no:6},{name:"Ramin Rezaeian",no:13},
+      {name:"Ehsan Hajsafi",no:15},{name:"Omid Noorafkan",no:22},
+      {name:"Saeid Ezatolahi",no:8},{name:"Ahmad Nourollahi",no:7},{name:"Ali Karimi",no:10},
+      {name:"Saman Ghoddos",no:14},{name:"Alireza Jahanbakhsh",no:16},{name:"Vahid Amiri",no:17},
+      {name:"Mehdi Taremi",no:9},{name:"Sardar Azmoun",no:11},{name:"Karim Ansarifard",no:18},
+      {name:"Ali Gholizadeh",no:19},{name:"Allahyar Sayyadmanesh",no:20},{name:"Shahab Zahedi",no:21}
+    ]
+  },
+  "🇦🇺 Australia": {
+    players: [
+      {name:"Mathew Ryan",no:1},{name:"Andrew Redmayne",no:12},{name:"Joe Gauci",no:23},
+      {name:"Nathaniel Atkinson",no:2},{name:"Harry Souttar",no:4},{name:"Kye Rowles",no:5},
+      {name:"Aziz Behich",no:3},{name:"Miloš Degenek",no:6},{name:"Fran Karačić",no:13},
+      {name:"Thomas Deng",no:22},
+      {name:"Jackson Irvine",no:8},{name:"Aaron Mooy",no:7},{name:"Ajdin Hrustić",no:10},
+      {name:"Riley McGree",no:14},{name:"Keanu Baccus",no:15},{name:"Cameron Devlin",no:16},
+      {name:"Connor Metcalfe",no:17},
+      {name:"Jamie Maclaren",no:9},{name:"Mathew Leckie",no:11},{name:"Craig Goodwin",no:18},
+      {name:"Marco Tilio",no:19},{name:"Kusini Yengi",no:20},{name:"Mitchell Duke",no:21},
+      {name:"Nestory Irankunda",no:24}
+    ]
+  },
+  "🇸🇨🇴 Scotland": {
+    players: [
+      {name:"Craig Gordon",no:1},{name:"Angus Gunn",no:12},{name:"Liam Kelly",no:23},
+      {name:"Anthony Ralston",no:2},{name:"Grant Hanley",no:4},{name:"Jack Hendry",no:5},
+      {name:"Scott McKenna",no:3},{name:"Nathan Patterson",no:6},{name:"Aaron Hickey",no:13},
+      {name:"Andy Robertson",no:14},{name:"Kieran Tierney",no:15},{name:"Dom Hyam",no:22},
+      {name:"Scott McTominay",no:8},{name:"John McGinn",no:7},{name:"Callum McGregor",no:10},
+      {name:"Billy Gilmour",no:16},{name:"Ryan Christie",no:17},{name:"Kenny McLean",no:18},
+      {name:"Lewis Morgan",no:19},{name:"Stuart Armstrong",no:20},
+      {name:"Ché Adams",no:9},{name:"Lyndon Dykes",no:11},{name:"Lawrence Shankland",no:21},
+      {name:"John Souttar",no:24},{name:"Ryan Gauld",no:25},{name:"Ben Doak",no:26}
+    ]
+  },
+};
+
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbycQo0PRsd7FBF7a1MQeGE7n9Sfg48nygGW9o2Bz53yeDE6QpdVoKUBagNx-Sb6sZ0/exec";
+const SIZES = ["XS","S","M","L","XL","XXL","3XL","4XL"];
+const KIT_TYPES = ["בית (Home)","חוץ (Away)","שלישית (Third)"];
+const SHIRT_TYPES = ["חולצת אוהד (Fan/Replica)","חולצת שחקן (Player/Authentic)"];
+const SHEET_HEADERS = ["תאריך","שם המזמין","נבחרת","בית / חוץ","מידה","סוג חולצה","שחקן","מספר","שם על הגב"];
+
+const teamNames = Object.keys(TEAMS_DATA).sort((a,b) => {
+  const na = a.replace(/^[^\s]+\s/,"");
+  const nb = b.replace(/^[^\s]+\s/,"");
+  return na.localeCompare(nb);
+});
+
+// State
+let orders = [{ id:1, name:"", team:"", kitType:"", size:"", shirtType:"", playerName:"", playerNumber:"", customBack:"" }];
+let nextId = 2;
+let showSummary = false;
+let sentCount = 0;
+let sendStatus = null;
+let openDropdown = null;
+
+// Close dropdowns on outside click
+document.addEventListener("click", (e) => {
+  if (openDropdown && !e.target.closest(".dropdown")) {
+    openDropdown.querySelector(".dropdown-menu").classList.remove("visible");
+    openDropdown.querySelector(".dropdown-trigger").classList.remove("open");
+    openDropdown = null;
+  }
+});
+
+function render() {
+  const filledOrders = orders.filter(o => o.name && o.team);
+  const uniqueTeams = [...new Set(orders.filter(o=>o.team).map(o=>o.team))].length;
+
+  // Stats
+  document.getElementById("statsBar").innerHTML = [
+    { label:"הזמנות", value:orders.length, icon:"📋" },
+    { label:"נבחרות", value:uniqueTeams, icon:"🏳️" },
+    { label:"הושלמו", value:filledOrders.length, icon:"✅" },
+    { label:"נשלחו", value:sentCount, icon:"📤" }
+  ].map(s => `
+    <div class="stat-box">
+      <div class="stat-icon">${s.icon}</div>
+      <div class="stat-value">${s.value}</div>
+      <div class="stat-label">${s.label}</div>
+    </div>
+  `).join("");
+
+  // Orders
+  document.getElementById("ordersContainer").innerHTML = orders.map((o, i) => `
+    <div class="order-card" data-id="${o.id}">
+      <div class="order-header">
+        <span class="order-num">הזמנה #${i+1}</span>
+        <button class="btn-remove" onclick="removeOrder(${o.id})">✕ הסר</button>
+      </div>
+      <div class="fields-grid">
+        <div>
+          <label class="field-label">שם המזמין</label>
+          <input class="field-input" value="${esc(o.name)}" placeholder="שם מלא" oninput="updateField(${o.id},'name',this.value)">
+        </div>
+        <div>
+          <label class="field-label">נבחרת</label>
+          ${makeDropdown(o.id, 'team', o.team, teamNames, 'בחר נבחרת...', false)}
+        </div>
+        <div>
+          <label class="field-label">בית / חוץ</label>
+          ${makeDropdown(o.id, 'kitType', o.kitType, KIT_TYPES, 'בחר...', false)}
+        </div>
+        <div>
+          <label class="field-label">מידה</label>
+          ${makeDropdown(o.id, 'size', o.size, SIZES, 'בחר מידה...', false)}
+        </div>
+        <div>
+          <label class="field-label">סוג חולצה</label>
+          ${makeDropdown(o.id, 'shirtType', o.shirtType, SHIRT_TYPES, 'אוהד / שחקן...', false)}
+        </div>
+        <div>
+          <label class="field-label">שחקן מהרשימה</label>
+          ${makeDropdown(o.id, 'player', o.playerName ? o.playerName+' (#'+o.playerNumber+')' : '',
+            o.team && TEAMS_DATA[o.team] ? TEAMS_DATA[o.team].players.map(p=>p.name+' (#'+p.no+')') : [],
+            o.team ? 'בחר שחקן...' : 'בחר נבחרת קודם', !o.team)}
+        </div>
+        <div>
+          <label class="field-label">מספר</label>
+          <input class="field-input" type="number" value="${esc(o.playerNumber)}" placeholder="#"
+            style="direction:ltr;text-align:center" min="1" max="99"
+            oninput="updateField(${o.id},'playerNumber',this.value)">
+        </div>
+        <div>
+          <label class="field-label">שם על הגב (חופשי)</label>
+          <input class="field-input" value="${esc(o.customBack)}" placeholder="${esc(o.playerName||'כל שם / שפה')}"
+            style="direction:auto" oninput="updateField(${o.id},'customBack',this.value)">
+        </div>
+      </div>
+    </div>
+  `).join("");
+
+  // Buttons
+  document.getElementById("btnRow").innerHTML = `
+    <button class="btn btn-add" onclick="addOrder()">➕ הוסף הזמנה</button>
+    <button class="btn btn-send" ${sendStatus==='sending'?'disabled':''} onclick="handleSend()">
+      ${sendStatus==='sending' ? '⏳ שולח...' : '📤 שלח לטבלה'}
+    </button>
+    ${filledOrders.length > 0 ? `
+      <button class="btn btn-summary" onclick="toggleSummary()">${showSummary?'🔼 הסתר סיכום':'📊 הצג סיכום'}</button>
+      <button class="btn btn-copy" onclick="exportText()">📋 העתק הזמנות</button>
+    ` : ''}
+  `;
+
+  // Summary
+  if (showSummary && filledOrders.length > 0) {
+    document.getElementById("summaryBox").innerHTML = `
+      <div class="summary-box">
+        <div class="summary-title">📊 סיכום הזמנות (${filledOrders.length})</div>
+        <table class="summary-table">
+          <thead><tr>${["#","שם","נבחרת","בית/חוץ","מידה","סוג","שחקן","מס׳","שם על הגב"].map(h=>'<th>'+h+'</th>').join("")}</tr></thead>
+          <tbody>${filledOrders.map((o,i) => `<tr>
+            <td style="color:var(--accent);font-weight:700">${i+1}</td>
+            <td>${esc(o.name)}</td><td>${esc(o.team)}</td><td>${esc(o.kitType)||'—'}</td>
+            <td>${esc(o.size)||'—'}</td><td style="font-size:11px">${esc(o.shirtType)||'—'}</td>
+            <td>${esc(o.playerName)||'—'}</td><td style="text-align:center">${o.playerNumber||'—'}</td>
+            <td style="direction:ltr">${esc(o.customBack||o.playerName)||'—'}</td>
+          </tr>`).join("")}</tbody>
+        </table>
+      </div>
+    `;
+  } else {
+    document.getElementById("summaryBox").innerHTML = "";
+  }
+}
+
+function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function makeDropdown(orderId, field, value, options, placeholder, disabled) {
+  const hasValue = value && value.length > 0;
+  const showSearch = options.length > 6;
+  const uid = `dd_${orderId}_${field}`;
+  return `
+    <div class="dropdown" id="${uid}">
+      <div class="dropdown-trigger ${hasValue?'':'placeholder'} ${disabled?'disabled':''}"
+           onclick="${disabled?'':(`toggleDropdown('${uid}')`)}">
+        ${hasValue ? esc(value) : placeholder}
+      </div>
+      <div class="dropdown-menu">
+        ${showSearch ? `<input class="dropdown-search" placeholder="🔍 חפש..." oninput="filterDropdown('${uid}',this.value)">` : ''}
+        <div class="dropdown-options">
+          ${options.map(o => `<div class="dropdown-item ${o===value?'selected':''}"
+            onclick="selectDropdown(${orderId},'${field}',this.textContent,'${uid}')">${esc(o)}</div>`).join("")}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function toggleDropdown(uid) {
+  const el = document.getElementById(uid);
+  const menu = el.querySelector(".dropdown-menu");
+  const trigger = el.querySelector(".dropdown-trigger");
+  const isOpen = menu.classList.contains("visible");
+
+  // Close any other open dropdown
+  if (openDropdown && openDropdown !== el) {
+    openDropdown.querySelector(".dropdown-menu").classList.remove("visible");
+    openDropdown.querySelector(".dropdown-trigger").classList.remove("open");
+  }
+
+  if (isOpen) {
+    menu.classList.remove("visible");
+    trigger.classList.remove("open");
+    openDropdown = null;
+  } else {
+    menu.classList.add("visible");
+    trigger.classList.add("open");
+    openDropdown = el;
+    const searchInput = menu.querySelector(".dropdown-search");
+    if (searchInput) { searchInput.value = ""; filterDropdown(uid,""); setTimeout(()=>searchInput.focus(),50); }
+  }
+}
+
+function filterDropdown(uid, query) {
+  const el = document.getElementById(uid);
+  const items = el.querySelectorAll(".dropdown-item");
+  const q = query.toLowerCase();
+  items.forEach(item => {
+    item.style.display = item.textContent.toLowerCase().includes(q) ? "" : "none";
+  });
+}
+
+function selectDropdown(orderId, field, value, uid) {
+  if (field === 'player') {
+    const match = value.match(/^(.+)\s\(#(\d+)\)$/);
+    if (match) {
+      updateField(orderId, 'playerName', match[1]);
+      updateField(orderId, 'playerNumber', match[2]);
+    }
+  } else if (field === 'team') {
+    updateField(orderId, field, value);
+    updateField(orderId, 'playerName', '');
+    updateField(orderId, 'playerNumber', '');
+  } else {
+    updateField(orderId, field, value);
+  }
+  const el = document.getElementById(uid);
+  if (el) {
+    el.querySelector(".dropdown-menu").classList.remove("visible");
+    el.querySelector(".dropdown-trigger").classList.remove("open");
+  }
+  openDropdown = null;
+  render();
+}
+
+function updateField(orderId, field, value) {
+  const o = orders.find(o => o.id === orderId);
+  if (o) o[field] = value;
+}
+
+function addOrder() {
+  orders.push({ id:nextId++, name:"", team:"", kitType:"", size:"", shirtType:"", playerName:"", playerNumber:"", customBack:"" });
+  render();
+}
+
+function removeOrder(id) {
+  if (orders.length === 1) return;
+  orders = orders.filter(o => o.id !== id);
+  render();
+}
+
+function toggleSummary() {
+  showSummary = !showSummary;
+  render();
+}
+
+async function handleSend() {
+  const filled = orders.filter(o => o.name && o.team);
+  if (filled.length === 0) {
+    showStatus("error", "אין הזמנות מלאות לשליחה. מלא לפחות שם ונבחרת.");
+    return;
+  }
+
+  showStatus("sending", "שולח נתונים לטבלה...");
+
+  const now = new Date();
+  const dateStr = `${now.getDate().toString().padStart(2,'0')}/${(now.getMonth()+1).toString().padStart(2,'0')}/${now.getFullYear()} ${now.getHours().toString().padStart(2,'0')}:${now.getMinutes().toString().padStart(2,'0')}`;
+
+  const rows = filled.map(o => [
+    dateStr, o.name, o.team, o.kitType||"", o.size||"",
+    o.shirtType||"", o.playerName||"",
+    o.playerNumber ? String(o.playerNumber) : "",
+    o.customBack || o.playerName || ""
+  ]);
+
+  try {
+    const resp = await fetch(APPS_SCRIPT_URL, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify({ orders: rows })
+    });
+    const result = await resp.json();
+    if (result.success) {
+      sentCount += filled.length;
+      showStatus("success", `✅ ${filled.length} הזמנות נשלחו בהצלחה לטבלה!`);
+    } else {
+      showStatus("error", `❌ שגיאה: ${result.error || "לא ידוע"}`);
+    }
+  } catch(err) {
+    showStatus("error", `❌ שגיאה: ${err.message}`);
+  }
+}
+
+function showStatus(status, msg) {
+  sendStatus = status;
+  const banner = document.getElementById("statusBanner");
+  banner.className = "status-banner status-" + status;
+  banner.innerHTML = (status==="sending" ? '<span class="spinner"></span>' : '') + msg;
+  banner.style.display = "block";
+  render();
+  if (status !== "sending") {
+    setTimeout(() => { banner.style.display="none"; sendStatus=null; render(); }, status==="success"?4000:5000);
+  }
+}
+
+function exportText() {
+  const filled = orders.filter(o => o.name && o.team);
+  let text = "🏆 הזמנת חולצות מונדיאל 2026\n" + "═".repeat(36) + "\n\n";
+  filled.forEach((o, i) => {
+    text += `הזמנה #${i+1}\nשם: ${o.name}\nנבחרת: ${o.team}\nסוג: ${o.kitType||"—"}\nמידה: ${o.size||"—"}\nחולצה: ${o.shirtType||"—"}\nשחקן: ${o.playerName||"—"} #${o.playerNumber||"—"}\nשם על הגב: ${o.customBack||o.playerName||"—"}\n${"─".repeat(30)}\n\n`;
+  });
+  text += `סה"כ: ${filled.length} חולצות\n`;
+  navigator.clipboard.writeText(text).then(() => alert("הטקסט הועתק ללוח!"));
+}
+
+// Initial render
+document.getElementById("statusBanner").style.display = "none";
+render();
+</script>
+</body>
+</html>
